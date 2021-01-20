@@ -36,6 +36,8 @@ spec:
             value: {{ .Values.listen.host | quote }}
           - name: MB_JETTY_PORT
             value: {{ .Values.listen.port | quote }}
+          - name: MB_JETTY_REQUEST_HEADER_SIZE
+            value: "16384"
           {{- if .Values.ssl.enabled }}
           - name: MB_JETTY_SSL
             value: true
