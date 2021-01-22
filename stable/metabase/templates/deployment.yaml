@@ -129,18 +129,19 @@ spec:
             value: {{ .Values.session.sessionCookies | quote }}
           {{- end }}
           ports:
-            - containerPort: {{ .Values.service.internalPort }}
+            - name: http
+              containerPort: {{ .Values.service.internalPort }}
           livenessProbe:
             httpGet:
-              path: /
-              port: {{ .Values.service.internalPort }}
+              path: /api/health
+              port: http
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
             timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
             failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
           readinessProbe:
             httpGet:
-              path: /
-              port: {{ .Values.service.internalPort }}
+              path: /api/health
+              port: http
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}

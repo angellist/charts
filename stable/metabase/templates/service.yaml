@@ -25,7 +25,7 @@ spec:
       nodePort: {{ .Values.service.nodePort }}
 {{- end}}
       protocol: TCP
-      name: {{ .Values.service.name }}
+      name: http-{{ .Values.service.name }}
   selector:
     app: {{ template "metabase.name" . }}
     release: {{ .Release.Name }}
